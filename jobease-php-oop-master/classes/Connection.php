@@ -1,4 +1,5 @@
 <?php
+session_start();
 class Connection
 {
 
@@ -6,6 +7,7 @@ class Connection
     private $user = "root";
     private $pwd = "";
     private $db = "brief oop";
+
     public function conn()
     {
         $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->db;

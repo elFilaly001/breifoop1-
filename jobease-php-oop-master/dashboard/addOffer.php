@@ -1,15 +1,3 @@
-<?php
-include "../classes/Connection.php";
-include "../classes/Users.php";
-$conn = new Connection();
-if ($_SESSION["roleuser"] = 'Candidat') {
-    header("Location: ../index.php");
-    die();
-} else {
-    header("Location: ../dashboard/dashboard.php");
-    die();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,7 +82,7 @@ if ($_SESSION["roleuser"] = 'Candidat') {
                         </div>
                     </div>
                     <div class="inline"></div>
-                    <div class="name">Admin</div>
+                    <div class="name"> Admin</div>
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-icon pe-md-0 position-relative" data-bs-toggle="dropdown">
@@ -109,113 +97,38 @@ if ($_SESSION["roleuser"] = 'Candidat') {
                     </ul>
                 </div>
             </nav>
-            <section class="Agents px-4">
-                <table class="agent table align-middle bg-white">
-                    <thead class="bg-light">
-                        <tr>
-                            <th>Name</th>
-                            <th>Title</th>
-                            <th>Status</th>
-                            <th>Position</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <?php
-                        $condidat = new Users($conn);
-                        $condidat->showAllCondidat();
-                        ?>
-                        <tr class="freelancer">
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" />
-                                    <div class="ms-3">
-                                        <p class="fw-bold mb-1 f_name">Kate Hunington</p>
-                                        <p class="text-muted mb-0 f_email">kate.hunington@gmail.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="fw-normal mb-1 f_title">Designer<br>UI/UX</p>
-
-                            </td>
-                            <td>
-                                <span class="f_status">Awaiting</span>
-                            </td>
-                            <td class="f_position">Senior</td>
-                            <td>
-                                <form action="">
-                                    <input type="hidden" name="delete" value="indx">
-                                    <button></button><img class="delet_user" src="img/user-x.svg" alt="">
-                                </form>
-                                <img class="ms-2 edit" src="img/edit.svg" alt="">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-
             </section>
-            <!-- edit modal -->
-            <div class="modal">
-                <div class="modal-content">
-                    <form id="forms">
-                        <!-- 2 column grid layout with text inputs for the first and last names -->
-                        <div class="row mb-4">
-                            <div class="col">
-                                <div class="">
-                                    <label class="form-label">First name</label>
-                                    <input type="text" class="form-control first_name">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="">
-                                    <label class="form-label">Last name</label>
-                                    <input type="text" class="form-control last_name">
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Text input -->
-                        <div class="mb-4">
-                            <label class="form-label">Email</label>
-                            <input type="text" class="form-control email">
-                        </div>
+            <form action="../classes/Offre.php" method="post" enctype="multipart/form-data">
 
-                        <!-- Text input -->
-                        <div class="mb-4">
-                            <label class="form-label">Title</label>
-                            <input type="text" class="form-control title_user">
-                        </div>
-
-                        <!-- Number input -->
-                        <div class=" mb-4">
-                            <label class="form-label">Status</label>
-                            <input type="text" class="form-control status">
-                        </div>
-
-                        <!-- Message input -->
-                        <div class=" mb-4">
-                            <label class="form-label">Position</label>
-                            <textarea class="form-control position" rows="4"></textarea>
-                        </div>
-
-                        <!-- Submit button -->
-                        <div class="d-flex w-100 justify-content-center">
-                            <p class="error text-danger"></p>
-                            <button type="submit" class="btn btn-success btn-block mb-4 me-4 save">Save Edit</button>
-                            <button class="btn btn-danger btn-block mb-4 annuler">Annuler</button>
-                        </div>
-                    </form>
-
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Titre</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="Titre">
                 </div>
-            </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Descrption</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="Descrption">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Company</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="Company">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Location</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="Location">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">image</label>
+                    <input type="file" class="form-control" id="exampleInputEmail1" name="jobImg" accept=".jpg , .jpeg , .png">
+                </div>
+                <button type="submit" class="btn btn-primary" name="submitOffre">Submit</button>
+            </form>
+
+
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="dashboard.js"></script>
-    <script src="agents.js"></script>
 </body>
 
 </html>

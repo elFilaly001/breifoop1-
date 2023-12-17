@@ -1,5 +1,6 @@
 <?php
 include_once "Connection.php";
+$conn = new Connection();
 class Users
 {
     //milk as a product
@@ -17,25 +18,34 @@ class Users
 
     public function Login($email, $password)
     {
-        $sql = "select * from utilisateur where Email = ? and MotDePasse = ?";
+        $sql = "SELECT * FROM utilisateur WHERE Email = ?";
         $stmt = $this->conn->conn()->prepare($sql);
-        $stmt->execute([$email, $password]);
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->execute([$email]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        foreach ($results as $result) {
-            if ($result['Role'] == 'Candidat') {
-                header("Location: ../index.php");
-                die();
-            } elseif ($result['Role'] == 'Admin') {
-                header("Location: ../dashboard/dashboard.php");
+        if ($result) {
+            if (password_verify($password, $result['MotDePasse'])) {
+                $_SESSION['roleuser'] = $result['Role'];
+                $_SESSION['userid'] = $result['UserID'];
+                if ($result['Role'] == 'Candidat') {
+                    header("Location: ../index.php");
+                    die();
+                } elseif ($result['Role'] == 'Admin') {
+                    header("Location: ../dashboard/dashboard.php");
+                    die();
+                }
+            } else {
+                header("Location: ../login.php");
                 die();
             }
+        } else {
+            header("Location: ../login.php");
+            die();
         }
     }
-
-    public function showAllCondida()
+    public function showAllCondidat()
     {
-        $sql = "select * from utilisateur u Natural join candidateur where Role = 'Candidat' ";
+        $sql = "select * from utilisateur u Natural join candidature c where u.Role = 'Candidat' ";
         $stmt = $this->conn->conn()->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -44,7 +54,7 @@ class Users
             <tr class="freelancer">
                 <td>
                     <div class="d-flex align-items-center">
-                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
+                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" />
                         <div class="ms-3">
                             <p class="fw-bold mb-1 f_name"><?= $result['NomUtilisateur'] ?></p>
                             <p class="text-muted mb-0 f_email"><?= $result['Email'] ?></p>
@@ -52,24 +62,22 @@ class Users
                     </div>
                 </td>
                 <td>
-                    <p class="fw-normal mb-1 f_title">Software engineer <br> IT department</p>
+                    <p class="fw-normal mb-1 f_title"><?= $result['Title'] ?></p>
 
                 </td>
                 <td>
-                    <span class="f_status">Active</span>
+                    <span class="f_status"><?= $result['StatutCand'] ?></span>
                 </td>
-                <td class="f_position">Senior</td>
+                <td class="f_position"><?= $result['Position'] ?></td>
                 <td>
-                    <img class="delet_user" src="img/user-x.svg" alt="">
-                    <img class="ms-2 edit" src="img/edit.svg" alt="">
+                    <img class="delet_user" src="img/user-x.svg" alt="" name="delete<?= $result['UserID'] ?>">
+                    <img class="ms-2 edit" src="img/edit.svg" alt="" name="update<?= $result['UserID'] ?>">
                 </td>
             </tr>
 <?php
         endforeach;
     }
 }
-session_start();
-$conn = new Connection();
 
 if (isset($_POST['Register'])) {
 
@@ -81,7 +89,8 @@ if (isset($_POST['Register'])) {
     $addUser = new Users($conn);
 
     if ($password == $confpassword) {
-        $addUser->RegisterUser($name, $password, $email);
+        $hashpass = password_hash($password, PASSWORD_DEFAULT);
+        $addUser->RegisterUser($name, $hashpass, $email);
     }
 
     header("Location: ../login.php");

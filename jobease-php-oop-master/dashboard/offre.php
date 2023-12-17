@@ -6,20 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="dashboard.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    </head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
 
 <body>
     <div class="wrapper">
         <aside id="sidebar" class="side">
             <div class="h-100">
                 <div class="sidebar_logo d-flex align-items-end">
-                   
+
                     <a href="#" class="nav-link text-white-50">Dashboard</a>
-                  
+
                 </div>
 
                 <ul class="sidebar_nav">
@@ -68,7 +67,7 @@
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text mb-3">Some quick example text to build on the card title and make up
                                         the bulk of the card's content.</p>
-                                    <small class="card-text">1  day ago</small>
+                                    <small class="card-text">1 day ago</small>
                                 </div>
                             </div>
                             <div class="list-group-item px-3 d-flex"><img src="img/notif.svg" alt="iconimage">
@@ -76,7 +75,7 @@
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text mb-3">Some quick example text to build on the card title and make up
                                         the bulk of the card's content.</p>
-                                    <small class="card-text">1  day ago</small>
+                                    <small class="card-text">1 day ago</small>
                                 </div>
                             </div>
                             <div class="list-group-item px-3 text-center"><a href="#">View all notifications</a></div>
@@ -98,6 +97,9 @@
                     </ul>
                 </div>
             </nav>
+
+            <a href="addOffer.php" class="btn btn-primary col-1 mb-2"> Add offre</a>
+
             <section class="Agents px-4">
                 <table class="agent table align-middle bg-white" style="min-width: 700px;">
                     <thead class="bg-light">
@@ -113,7 +115,7 @@
                         <tr class="freelancer">
                             <td>
                                 <div class="d-flex align-items-center">
-                                    
+
                                     <div class="ms-3">
                                         <p class="fw-bold mb-1 f_name">John Doe</p>
                                     </div>
@@ -128,21 +130,21 @@
                             </td>
                             <td class="f_position">Inactif</td>
                             <td class="">
-                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon" >
+                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon">
                                 <img class="delet_user w-50" src="img/journal-x.svg" alt="icon">
                             </td>
                         </tr>
                         <tr class="freelancer">
                             <td>
                                 <div class="d-flex align-items-center">
-                                    
+
                                     <div class="ms-3">
                                         <p class="fw-bold mb-1 f_name">John Doe</p>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <p class="fw-normal mb-1 f_title">I need someone for InDesign work on a semi-regular basis. Must be proficient in Indesign and page layout. Must be detail-oriented and highly organized. Fast turnaround times are a must and need to work during USA EST business hours.                                </p>
+                                <p class="fw-normal mb-1 f_title">I need someone for InDesign work on a semi-regular basis. Must be proficient in Indesign and page layout. Must be detail-oriented and highly organized. Fast turnaround times are a must and need to work during USA EST business hours. </p>
 
                             </td>
                             <td>
@@ -150,14 +152,14 @@
                             </td>
                             <td class="f_position">Actif</td>
                             <td class="">
-                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon" >
+                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon">
                                 <img class="delet_user w-50" src="img/journal-x.svg" alt="icon">
                             </td>
                         </tr>
                         <tr class="freelancer">
                             <td>
                                 <div class="d-flex align-items-center">
-                                    
+
                                     <div class="ms-3">
                                         <p class="fw-bold mb-1 f_name">John Doe</p>
                                     </div>
@@ -172,21 +174,21 @@
                             </td>
                             <td class="f_position">Inactif</td>
                             <td class="">
-                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon" >
+                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon">
                                 <img class="delet_user w-50" src="img/journal-x.svg" alt="icon">
                             </td>
                         </tr>
                         <tr class="freelancer">
                             <td>
                                 <div class="d-flex align-items-center">
-                                    
+
                                     <div class="ms-3">
                                         <p class="fw-bold mb-1 f_name">John Doe</p>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <p class="fw-normal mb-1 f_title">I am looking for a freelancer to help me with an AI project it’s very small and I need it in 5 hours.                                </p>
+                                <p class="fw-normal mb-1 f_title">I am looking for a freelancer to help me with an AI project it’s very small and I need it in 5 hours. </p>
 
                             </td>
                             <td>
@@ -194,14 +196,14 @@
                             </td>
                             <td class="f_position">Actif</td>
                             <td class="">
-                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon" >
+                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon">
                                 <img class="delet_user w-50" src="img/journal-x.svg" alt="icon">
                             </td>
                         </tr>
                         <tr class="freelancer">
                             <td>
                                 <div class="d-flex align-items-center">
-                                    
+
                                     <div class="ms-3">
                                         <p class="fw-bold mb-1 f_name">John Doe</p>
                                     </div>
@@ -216,14 +218,14 @@
                             </td>
                             <td class="f_position">Inactif</td>
                             <td class="">
-                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon" >
+                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon">
                                 <img class="delet_user w-50" src="img/journal-x.svg" alt="icon">
                             </td>
                         </tr>
                         <tr class="freelancer">
                             <td>
                                 <div class="d-flex align-items-center">
-                                    
+
                                     <div class="ms-3">
                                         <p class="fw-bold mb-1 f_name">John Doe</p>
                                     </div>
@@ -238,14 +240,14 @@
                             </td>
                             <td class="f_position">Actif</td>
                             <td class="">
-                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon" >
+                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon">
                                 <img class="delet_user w-50" src="img/journal-x.svg" alt="icon">
                             </td>
                         </tr>
                         <tr class="freelancer">
                             <td>
                                 <div class="d-flex align-items-center">
-                                    
+
                                     <div class="ms-3">
                                         <p class="fw-bold mb-1 f_name">John Doe</p>
                                     </div>
@@ -260,7 +262,7 @@
                             </td>
                             <td class="f_position">Actif</td>
                             <td class="">
-                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon" >
+                                <img class="accept_task w-50" src="img/journal-check.svg" alt="icon">
                                 <img class="delet_user w-50" src="img/journal-x.svg" alt="icon">
                             </td>
                         </tr>
@@ -269,12 +271,10 @@
 
 
             </section>
-            
+
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="dashboard.js"></script>
 </body>
 

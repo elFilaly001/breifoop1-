@@ -1,6 +1,9 @@
 <?php
-require_once "classes/Offre.php";
 require_once "classes/Connection.php";
+require_once "classes/Offre.php";
+require_once "classes/Users.php";
+$conn = new Connection();
+$user = new Users($conn);
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +21,8 @@ require_once "classes/Connection.php";
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
 </head>
 
 <body>
@@ -60,7 +65,9 @@ require_once "classes/Connection.php";
 							<a class="nav-link" href="#">EN</a>
 						</span>
 						<li class="nav-item">
-							<span class="nav-link"><?= $_SESSION['useremail'] ?></span>
+							<span class="nav-link"><?php if (isset($_SESSION['useremail'])) {
+														echo $_SESSION['useremail'];
+													} else { ?><a href="login.php"><?= "Login" ?></a><?php } ?></span>
 						</li>
 					</ul>
 				</div>
@@ -71,57 +78,28 @@ require_once "classes/Connection.php";
 
 
 
-	<section action="#" method="get" class="search">
+	<section class="search ">
 		<h2>Find Your Dream Job</h2>
-		<form class="form-inline">
+		<div class="d-flex justify-content-center">
 			<div class="form-group mb-2">
-				<input type="text" name="keywords" placeholder="Keywords">
-
+				<input type="text" placeholder="Keywords" class="keywords">
 
 			</div>
 			<div class="form-group mx-sm-3 mb-2">
-				<input type="text" name="location" placeholder="Location">
+				<input type="text" placeholder="Location" class="keywords">
 			</div>
 			<div class="form-group mx-sm-3 mb-2">
-				<input type="text" name="company" placeholder="Company">
+				<input type="text" placeholder="Company" class="keywords">
 			</div>
-			<button type="submit" class="btn btn-primary mb-2">Search</button>
-		</form>
+			<button type="button" class="btn btn-primary mb-2" onclick="search()">Search</button>
+		</div>
+
 	</section>
 
 	<!--------------------------  card  --------------------->
 	<section class="light">
 		<h2 class="text-center py-3">Latest Job Listings</h2>
-		<div class="container py-2">
-
-			<?php
-			$conn = new Connection();
-			$offre = new Offer($conn);
-			$offre->showOffer();
-			?>
-
-			<article class="postcard light green">
-				<a class="postcard__img_link" href="#">
-					<img class="postcard__img" src="https://picsum.photos/300/300" alt="Image Title" />
-				</a>
-				<div class="postcard__text t-dark">
-					<h3 class="postcard__title green"><a href="#">Experienced Web Developer in Python .</a></h3>
-					<div class="postcard__subtitle small">
-						<time datetime="2020-05-25 12:00:00">
-							<i class="fas fa-calendar-alt mr-2"></i>Mon, May 26th 2023
-						</time>
-					</div>
-					<div class="postcard__bar"></div>
-					<div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim,!</div>
-					<ul class="postcard__tagbox">
-						<li class="tag__item"><i class="fas fa-tag mr-2"></i>Maroc</li>
-						<li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
-						<li class="tag__item play green">
-							<a href="#"><i class="fas fa-play mr-2" name=></i>APPLY NOW</a>
-						</li>
-					</ul>
-				</div>
-			</article>
+		<div class="container py-2" id="cards">
 		</div>
 	</section>
 
@@ -132,8 +110,34 @@ require_once "classes/Connection.php";
 		<p>© 2023 JobEase </p>
 	</footer>
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+	function search() {
+		let keywords = document.getElementsByClassName("keywords");
+		let cards = document.getElementById("cards");
+		$.ajax({
+			method: "POST",
+			url: "classes/Offre.php",
+			data: {
+				keyword: keywords[0].value,
+				Location: keywords[1].value,
+				Company: keywords[2].value,
+			},
+			// dataType: "json",
+
+			success: function(response) {
+				//   console.log("the response is :", response);
+				cards.innerHTML = response;
+			},
+			error: function() {
+				alert("it doesn't work");
+			},
+		});
+	}
+
+	search();
+</script>
 
 </html>
