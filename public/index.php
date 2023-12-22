@@ -2,13 +2,17 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+session_start();
+
 use App\Controllers\HomeController;
 use App\Controllers\LoginController;
+use App\Controllers\offreController;
 use App\Controllers\Core\guest;
 
 
 $controller = new HomeController();
 $logincheck = new LoginController();
+$offer = new offreController();
 $guest = new guest();
 
 
@@ -47,11 +51,9 @@ switch ($route) {
         $controller->register_page();
         break;
     case 'post_login':
-
         $logincheck->login();
         break;
     case 'post_register':
-
         $logincheck->register();
         break;
     case 'denied':
@@ -59,6 +61,15 @@ switch ($route) {
         break;
     case 'addOffer':
         $controller->addOfre();
+        break;
+    case 'post_addOffre':
+        $offer->post_addOffre();
+        break;
+    case 'Offres':
+        $offer->showOffres();
+        break;
+    case 'apply':
+        $offer->applyToOffer();
         break;
     default:
         // Handle 404 or redirect to the default route

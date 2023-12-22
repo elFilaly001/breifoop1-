@@ -99,9 +99,6 @@ use App\Controllers\LoginController;
 		</div>
 	</section>
 
-
-
-
 	<footer>
 		<p>© 2023 JobEase </p>
 	</footer>
@@ -115,7 +112,7 @@ use App\Controllers\LoginController;
 		let cards = document.getElementById("cards");
 		$.ajax({
 			method: "POST",
-			url: "classes/Offre.php",
+			url: "?route=Offres",
 			data: {
 				keyword: keywords[0].value,
 				Location: keywords[1].value,

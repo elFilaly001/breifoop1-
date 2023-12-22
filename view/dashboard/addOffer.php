@@ -99,7 +99,7 @@
             </nav>
             </section>
 
-            <form action="?route=AddOffre" method="post" enctype="multipart/form-data">
+            <form action="?route=post_addOffre" method="post" enctype="multipart/form-data">
 
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Titre</label>
