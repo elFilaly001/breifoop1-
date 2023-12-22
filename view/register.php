@@ -1,7 +1,3 @@
-<?php
-include "classes/Users.php";
-?>
-
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en" dir="ltr">
@@ -10,7 +6,7 @@ include "classes/Users.php";
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> Registration or Sign Up form in HTML CSS | CodingLab </title>
-  <link rel="stylesheet" href="styles/registerstyle.css">
+  <link rel="stylesheet" href="assets/styles/registerstyle.css">
 </head>
 
 <body>
@@ -37,7 +33,7 @@ include "classes/Users.php";
         <input type="Submit" value="Register Now" name="Register">
       </div>
       <div class="text">
-        <h3>Already have an account? <a href="/login.php">Login now</a></h3>
+        <h3>Already have an account? <a href="?route=login">Login now</a></h3>
       </div>
     </form>
   </div>
