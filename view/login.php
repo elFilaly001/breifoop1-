@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Form | CodingLab</title>
-  <link rel="stylesheet" href="styles/loginstyle.css">
+  <link rel="stylesheet" href="assets/styles/loginstyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 </head>
 
@@ -15,7 +15,7 @@
     <div class="wrapper">
       <div class="title"><span>Login Form</span></div>
       <h1></h1>
-      <form action="classes/Users.php" method="POST">
+      <form action="?route=post_login" method="POST">
         <div class="row">
           <i class="fas fa-user"></i>
           <input type="text" name="email" placeholder="Email or Phone" required>
@@ -29,7 +29,7 @@
           <input type="submit" value="Login" name="Login">
         </div>
         <span style="color:red;"></span>
-        <div class="signup-link">Not a member? <a href="register.php">Signup now</a></div>
+        <div class="signup-link">Not a member? <a href="?route=register">Signup now</a></div>
       </form>
     </div>
   </div>

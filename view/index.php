@@ -1,9 +1,6 @@
 <?php
-require_once "classes/Connection.php";
-require_once "classes/Offre.php";
-require_once "classes/Users.php";
-$conn = new Connection();
-$user = new Users($conn);
+
+use App\Controllers\LoginController;
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +13,7 @@ $user = new Users($conn);
 		JobEase
 	</title>
 
-	<link rel="stylesheet" href="styles/style.css">
+	<link rel="stylesheet" href="assets/styles/style.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -65,9 +62,8 @@ $user = new Users($conn);
 							<a class="nav-link" href="#">EN</a>
 						</span>
 						<li class="nav-item">
-							<span class="nav-link"><?php if (isset($_SESSION['useremail'])) {
-														echo $_SESSION['useremail'];
-													} else { ?><a href="login.php"><?= "Login" ?></a><?php } ?></span>
+							<span class="nav-link"><?php $check = new LoginController();
+													$check->ifloged(); ?></a></span>
 						</li>
 					</ul>
 				</div>
@@ -132,7 +128,7 @@ $user = new Users($conn);
 				cards.innerHTML = response;
 			},
 			error: function() {
-				alert("it doesn't work");
+				alert("no user found");
 			},
 		});
 	}
