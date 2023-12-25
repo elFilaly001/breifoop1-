@@ -1,3 +1,8 @@
+<?php
+
+use App\Controllers\offreController;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +13,7 @@
     <link rel="stylesheet" href="assets/styles/dashboard.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -22,10 +28,10 @@
                 </div>
 
                 <ul class="sidebar_nav">
-                    <li class="sidebar_item active" style="width: 100%;">
+                    <li class="sidebar_item " style="width: 100%;">
                         <a href="?route=dashbord" class="sidebar_link"> <img src="assets/styles/img/1. overview.svg" alt="icon">Overview</a>
                     </li>
-                    <li class="sidebar_item">
+                    <li class="sidebar_item active">
                         <a href="?route=candidat" class="sidebar_link"> <img src="assets/styles/img/agents.svg" alt="icon">Candidat</a>
                     </li>
                     <li class="sidebar_item">
@@ -102,41 +108,17 @@
                     <thead class="bg-light">
                         <tr>
                             <th>Name</th>
-                            <th>Title</th>
-                            <th>Status</th>
-                            <th>Position</th>
+                            <th>Title of job</th>
+                            <th>description</th>
+                            <th>status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-
-
-                        <tr class="freelancer">
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" />
-                                    <div class="ms-3">
-                                        <p class="fw-bold mb-1 f_name">Kate Hunington</p>
-                                        <p class="text-muted mb-0 f_email">kate.hunington@gmail.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="fw-normal mb-1 f_title">Designer<br>UI/UX</p>
-
-                            </td>
-                            <td>
-                                <span class="f_status">Awaiting</span>
-                            </td>
-                            <td class="f_position">Senior</td>
-                            <td>
-                                <form action="">
-                                    <input type="hidden" name="delete" value="indx">
-                                    <img class="delet_user" src="assets/styles/img/user-x.svg" alt="">
-                                </form>
-                                <img class="ms-2 edit" src="assets/styles/img/edit.svg" alt="">
-                            </td>
-                        </tr>
+                        <?php
+                        $app = new offreController;
+                        $app->showAllusers();
+                        ?>
                     </tbody>
                 </table>
 

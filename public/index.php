@@ -71,6 +71,12 @@ switch ($route) {
     case 'apply':
         $offer->applyToOffer();
         break;
+    case 'opORcl':
+        $offer->opORcl();
+        break;
+    case 'accOffre':
+        $offer->accOffre();
+        break;
     default:
         // Handle 404 or redirect to the default route
         header('HTTP/1.0 404 Not Found');

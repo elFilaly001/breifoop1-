@@ -96,7 +96,7 @@ class offreController
                     </article>
                 </form>
 
-<?php
+            <?php
             endforeach;
         }
     }
@@ -114,6 +114,134 @@ class offreController
             header("Location: ?route=home");
         } else {
             header("Location: ?route=home");
+        }
+    }
+
+    public function showOffresTB()
+    {
+        $jobs = new OffreModel();
+        $results = $jobs->allOffres();
+        foreach ($results as $result) :
+            ?>
+            <tr class="freelancer">
+                <td>
+                    <img src="assets/styles/img/<?= $result['image_path'] ?>" class="rounded-circle" alt="" style="width: 45px; height: 45px">
+                </td>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <div class="ms-3">
+                            <p class="fw-bold mb-1 f_name"><?= $result['title'] ?></p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <p class="fw-normal mb-1 f_title"><?= $result['description'] ?>.</p>
+
+                </td>
+                <td>
+                    <p class="fw-normal mb-1 f_title"><?= $result['company'] ?></p>
+                </td>
+                <td class="f_position"><?= $result['location'] ?></td>
+                <td class="f_position"><?= $result['date_created'] ?></td>
+                <td class="f_position"><?= $result['status'] ?></td>
+                <td class="">
+                    <form action="?route=opORcl" method="post">
+                        <input type="hidden" name="job_id" value="<?= $result['job_id'] ?>">
+                        <button type="submit" class="btn btn-success" name="open" value="open">
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                        <button type="submit" class="btn btn-danger" name="xmark" value="closed">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+
+
+            <?php
+        endforeach;
+    }
+
+    public function opORcl()
+    {
+        $job = $_POST['job_id'];
+        $opncl = new OffreModel();
+        if (isset($_POST['open']) or  isset($_POST['xmark'])) {
+            if (isset($_POST['open'])) {
+                $opncl->controlOffre($_POST['open'], $job);
+                header("Location: ?route=offre");
+            } elseif (isset($_POST['xmark'])) {
+                $opncl->controlOffre($_POST['xmark'], $job);
+                header("Location: ?route=offre");
+            }
+        }
+    }
+
+    public function showAllusers()
+    {
+        $users = new OffreModel;
+        $results = $users->all_users();
+        foreach ($results as $result) :
+            if ($result["app_status"] === "in progress") :
+            ?>
+                <tr>
+                    <td>
+                        <?= $result['username'] ?>
+                    </td>
+                    <td>
+                        <?= $result['title'] ?>
+                    </td>
+                    <td>
+                        <?= $result['description'] ?>
+                    </td>
+                    <td> <?= $result['app_status'] ?></td>
+                    <td>
+                        <form action="?route=accOffre" method="post">
+                            <input type="hidden" name="app_id" value="<?= $result['app_id'] ?>">
+                            <button type="submit" class="btn btn-success " name="check" value="approved">
+                                <i class="fa-solid fa-check"></i>
+                            </button>
+                            <button type="submit" class="btn btn-danger" name="xmark" value="not approved">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            <?php
+            else :
+            ?>
+                <tr class="freelancer">
+                    <td>
+
+                        <?= $result['username'] ?>
+
+                    </td>
+                    <td>
+                        <?= $result['title'] ?>
+                    </td>
+                    <td>
+                        <?= $result['description'] ?>
+
+                    </td>
+                    <td> <?= $result['app_status'] ?></td>
+                </tr>
+<?php
+            endif;
+        endforeach;
+    }
+
+    public function accOffre()
+    {
+        $job = $_POST['app_id'];
+        $opncl = new OffreModel();
+        if (isset($_POST['check']) or  isset($_POST['xmark'])) {
+            if (isset($_POST['check'])) {
+                $opncl->controlApp($_POST['check'], $job);
+                header("Location: ?route=candidat");
+            } elseif (isset($_POST['xmark'])) {
+                $opncl->controlApp($_POST['xmark'], $job);
+                header("Location: ?route=candidat");
+            }
         }
     }
 }

@@ -22,7 +22,7 @@
                 </div>
 
                 <ul class="sidebar_nav">
-                    <li class="sidebar_item active" style="width: 100%;">
+                    <li class="sidebar_item " style="width: 100%;">
                         <a href="?route=dashboard" class="sidebar_link"> <img src="assets/styles/img/1. overview.svg" alt="icon">Overview</a>
                     </li>
                     <li class="sidebar_item">
@@ -31,7 +31,7 @@
                     <li class="sidebar_item">
                         <a href="?route=offre" class="sidebar_link"> <img src="assets/styles/img/task.svg" alt="icon">Offre</a>
                     </li>
-                    <li class="sidebar_item">
+                    <li class="sidebar_item active">
                         <a href="?route=contact" class="sidebar_link"><img src="assets/styles/img/agent.svg" alt="icon">Contact</a>
                     </li>
                     <li class="sidebar_item">
